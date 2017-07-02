@@ -120,6 +120,8 @@ module Elasticsearch
           end
 
           __find_in_batches(options) do |batch|
+            next if batch.empty?
+
             response = client.bulk \
                          index:   target_index,
                          type:    target_type,
